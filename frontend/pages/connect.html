@@ -1,0 +1,126 @@
+<!-- ═══════════════════════════════════════
+     CONNECT DATABASE PAGE
+     Edit this file to change the connection UI
+     ═══════════════════════════════════════ -->
+
+<!-- Hero banner -->
+<div class="hero-card" style="max-width:680px;margin:0 auto">
+  <div class="hero-h">Connect Your <em>Database</em></div>
+  <div class="hero-p">Connect a database for analysis. Questions, schema, and result samples are sent to your configured AI provider.</div>
+</div>
+
+<!-- Already connected banner -->
+<div class="hidden" id="conn-banner" style="max-width:680px;margin:0 auto">
+  <div class="card" style="background:rgba(45,212,191,0.06);border-color:rgba(45,212,191,0.22)">
+    <div class="card-bd flex ic jb gap3" style="flex-wrap:wrap">
+      <div class="flex ic gap3">
+        <span style="font-size:22px">✅</span>
+        <div>
+          <div class="fw7" style="color:var(--teal)">Database Connected</div>
+          <div class="tmuted tsm mt1" id="conn-banner-lbl">—</div>
+        </div>
+      </div>
+      <button class="btn btn-surface btn-sm" onclick="resetConn()" style="border-color:rgba(45,212,191,0.3);color:var(--teal)">
+        🔄 Switch Database
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Wizard card -->
+<div class="card" style="max-width:680px;margin:0 auto">
+  <div class="card-bd">
+
+    <!-- Wizard progress bar -->
+    <div class="wiz-bar">
+      <div class="wiz-s done"  id="ws1"></div>
+      <div class="wiz-s"       id="ws2"></div>
+      <div class="wiz-s"       id="ws3"></div>
+    </div>
+
+    <!-- STEP 1: Choose DB type -->
+    <div id="conn-step1">
+      <div class="card-title mb3">Step 1 — Choose Your Database</div>
+      <div class="db-grid">
+        <div class="db-opt sel" id="dbt-demo" onclick="pickDB('demo',this)">
+          <span class="db-opt-ico">🎯</span>
+          <div class="db-opt-name">Demo DB</div>
+          <div class="db-opt-desc">Built-in sample data</div>
+        </div>
+        <div class="db-opt" id="dbt-sqlite" onclick="pickDB('sqlite',this)">
+          <span class="db-opt-ico">🗃️</span>
+          <div class="db-opt-name">SQLite</div>
+          <div class="db-opt-desc">Local .db file</div>
+        </div>
+        <div class="db-opt" id="dbt-postgresql" onclick="pickDB('postgresql',this)">
+          <span class="db-opt-ico">🐘</span>
+          <div class="db-opt-name">PostgreSQL</div>
+          <div class="db-opt-desc">Production DB</div>
+        </div>
+        <div class="db-opt" id="dbt-mysql" onclick="pickDB('mysql',this)">
+          <span class="db-opt-ico">🐬</span>
+          <div class="db-opt-name">MySQL</div>
+          <div class="db-opt-desc">Most popular</div>
+        </div>
+      </div>
+      <button class="btn btn-green w100 mt3" onclick="connNext()">Continue →</button>
+    </div>
+
+    <!-- STEP 2: Connection details -->
+    <div id="conn-step2" class="hidden">
+      <div class="card-title mb3">Step 2 — Connection Details</div>
+      <div id="conn-form"></div>
+      <div class="flex gap2 mt3">
+        <button class="btn btn-surface" style="flex:1" onclick="connBack()">← Back</button>
+        <button class="btn btn-green"   style="flex:2" onclick="doConnect()">Test &amp; Connect 🔗</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Result -->
+    <div id="conn-step3" class="hidden">
+      <div id="conn-result">
+        <div class="empty">
+          <span class="empty-ico">⏳</span>
+          <h3>Connecting…</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Security note -->
+<div class="card" style="max-width:680px;margin:0 auto;background:rgba(45,212,191,0.04);border-color:rgba(45,212,191,0.16)">
+  <div class="card-bd flex gap3">
+    <span style="font-size:20px;flex-shrink:0">🔒</span>
+    <div>
+      <div class="fw7 tsm" style="color:var(--teal);margin-bottom:4px">Your data stays with you</div>
+      <div class="tmuted" style="font-size:13px;line-height:1.65">Use a least-privilege read-only database account. Query results are processed by the app, and a sample may be sent to the configured AI provider to produce a summary.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Demo DB info -->
+<div class="card" style="max-width:680px;margin:0 auto">
+  <div class="card-hd"><div class="card-title">🎯 Demo Database Contents</div></div>
+  <div class="card-bd">
+    <div class="g2">
+      <div class="flex ic gap2" style="padding:10px;background:var(--s2);border-radius:var(--r2)">
+        <span style="font-size:22px">👥</span>
+        <div><div class="fw7">100 Customers</div><div class="txs tmuted">Cities, segments, join dates</div></div>
+      </div>
+      <div class="flex ic gap2" style="padding:10px;background:var(--s2);border-radius:var(--r2)">
+        <span style="font-size:22px">📦</span>
+        <div><div class="fw7">16 Products</div><div class="txs tmuted">3 categories, prices, stock</div></div>
+      </div>
+      <div class="flex ic gap2" style="padding:10px;background:var(--s2);border-radius:var(--r2)">
+        <span style="font-size:22px">🛒</span>
+        <div><div class="fw7">600 Orders</div><div class="txs tmuted">Status, amounts, discounts</div></div>
+      </div>
+      <div class="flex ic gap2" style="padding:10px;background:var(--s2);border-radius:var(--r2)">
+        <span style="font-size:22px">📣</span>
+        <div><div class="fw7">25 Campaigns</div><div class="txs tmuted">Channels, budgets, ROI</div></div>
+      </div>
+    </div>
+  </div>
+</div>

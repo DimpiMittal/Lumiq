@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumiq</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>"/>
+  <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+
+<div id="shell">
+
+  <!-- ══════════════ SIDEBAR ══════════════ -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="logo-bar" onclick="navigate('query')">
+      <div class="logo-badge">D</div>
+      <div>
+        <div class="logo-title">Lumiq</div>
+        <div class="logo-sub">Your Data Analyser Agent</div>
+      </div>
+    </div>
+
+    <nav class="nav-area">
+
+      <div class="nav-group">
+        <span class="nav-grp-lbl">Analyze</span>
+        <button class="nav-link" id="nav-query"     onclick="navigate('query')">
+          <span class="ico"></span> Ask AI
+        </button>
+        <button class="nav-link" id="nav-dashboard" onclick="navigate('dashboard')">
+          <span class="ico"></span> Dashboard
+        </button>
+        <button class="nav-link" id="nav-sql"       onclick="navigate('sql')">
+          <span class="ico"></span> SQL Editor
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-grp-lbl">Data</span>
+        <button class="nav-link" id="nav-connect" onclick="navigate('connect')">
+          <span class="ico"></span> Connect Database
+        </button>
+        <button class="nav-link" id="nav-upload"  onclick="navigate('upload')">
+          <span class="ico"></span> Upload CSV
+        </button>
+        <button class="nav-link" id="nav-history" onclick="navigate('history')">
+          <span class="ico"></span> Query History
+          <span class="badge" id="hist-badge">0</span>
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-grp-lbl">System</span>
+        <button class="nav-link" id="nav-settings" onclick="navigate('settings')">
+          <span class="ico">⚙️</span> Settings
+        </button>
+      </div>
+
+    </nav>
+
+    <div class="db-pill">
+      <div class="db-pill-row">
+        <div class="db-dot" id="db-dot"></div>
+        <div class="db-pill-label" id="db-name">Not Connected</div>
+      </div>
+      <div class="db-pill-sub" id="db-sub">Connect a database to begin</div>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <div class="main-area">
+
+    <header class="topbar">
+      <button class="hbg" id="hbg" onclick="toggleSidebar()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="pg-heading">Ask AI Analyst</div>
+      <div class="topbar-right">
+        <span id="ai-badge"></span>
+        <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark">☀️</button>
+        <button class="btn btn-outline btn-sm" onclick="navigate('connect')">🔗 Database</button>
+        <button class="btn btn-green  btn-sm" onclick="navigate('query')">✨ Ask AI</button>
+      </div>
+    </header>
+
+    <!-- Page content loads here -->
+    <div id="page-area" class="pg"></div>
+
+  </div>
+
+</div><!-- /shell -->
+
+<!-- Fullscreen chart overlay (shared across all pages) -->
+<div class="overlay" id="chart-overlay" onclick="closeChartOverlay(event)">
+  <div class="overlay-box">
+    <div class="ov-hd">
+      <div class="ov-title" id="ov-title">Chart</div>
+      <div class="flex ic gap2">
+        <div id="ov-tabs" class="flex gap1"></div>
+        <button class="btn btn-outline btn-sm" onclick="closeChartOverlayDirect()">✕ Close</button>
+      </div>
+    </div>
+    <div class="ov-ct-wrap">
+      <canvas id="ov-canvas"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notifications -->
+<div class="toast-tray" id="toast-tray"></div>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<script src="/js/app.js"></script>
+
+</body>
+</html>

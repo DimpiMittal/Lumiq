@@ -1,0 +1,160 @@
+<!-- ═══════════════════════════════════════
+     SETTINGS PAGE
+     Edit this file to change the settings UI
+     ═══════════════════════════════════════ -->
+
+<!-- Page header -->
+<div class="pg-hero">
+  <div>
+    <div class="pg-h1">⚙️ Settings</div>
+    <div class="pg-sub">Configure DataWise AI to your preferences</div>
+  </div>
+</div>
+
+<div class="g2" style="align-items:start">
+
+  <!-- Left: API Keys + Display prefs -->
+  <div class="fcol gap3">
+
+    <!-- API Keys -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title">🔑 API Keys</div></div>
+      <div class="card-bd">
+        <div class="section-hd">PRIMARY — GROQ (Free, Recommended)</div>
+        <div class="field">
+          <label class="field-lbl">Groq API Key</label>
+          <input type="password" class="field-inp" placeholder="gsk_…"/>
+          <div class="field-hint">
+            Get your free key at <a href="https://console.groq.com" target="_blank">console.groq.com</a>
+            — 14,400 free requests/day
+          </div>
+        </div>
+
+        <div class="section-hd mt3">BACKUP — GEMINI (Optional)</div>
+        <div class="field">
+          <label class="field-lbl">Gemini API Key</label>
+          <input type="password" class="field-inp" placeholder="AIza…"/>
+          <div class="field-hint">
+            Get free key at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>
+            — used as fallback if Groq fails
+          </div>
+        </div>
+
+        <div class="tag tag-a" style="display:block;padding:10px 13px;border-radius:10px;font-size:13px;margin-top:6px;line-height:1.6">
+          ⚠️ To apply API keys: edit the <strong>.env</strong> file in the root folder, then
+          restart <span class="fmono" style="color:var(--sky)">python app.py</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display preferences -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title">🎨 Display</div></div>
+      <div class="card-bd">
+
+        <div class="setting-row">
+          <div>
+            <div class="s-label">Color Theme</div>
+            <div class="s-desc">Switch between dark and light mode</div>
+          </div>
+          <button class="btn btn-surface btn-sm" onclick="toggleTheme()" id="theme-toggle-btn">Toggle Theme</button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <div class="s-label">Show SQL in Results</div>
+            <div class="s-desc">Display the generated SQL query in chat</div>
+          </div>
+          <button class="tog on" id="tog-sql" onclick="this.classList.toggle('on')"></button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <div class="s-label">Show Charts in Results</div>
+            <div class="s-desc">Auto-render charts for numeric data</div>
+          </div>
+          <button class="tog on" id="tog-chart" onclick="this.classList.toggle('on')"></button>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /left col -->
+
+  <!-- Right: Version info + shortcuts -->
+  <div class="fcol gap3">
+
+    <!-- Version info -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title">ℹ️ About DataWise AI</div></div>
+      <div class="card-bd">
+        <div class="setting-row">
+          <span class="s-label">Version</span>
+          <span class="tag tag-g">v5.0</span>
+        </div>
+        <div class="setting-row">
+          <span class="s-label">Primary AI</span>
+          <span class="tag tag-b">Groq Llama 3.3 70B</span>
+        </div>
+        <div class="setting-row">
+          <span class="s-label">Backup AI</span>
+          <span class="tag tag-p">Gemini 1.5 Flash</span>
+        </div>
+        <div class="setting-row">
+          <span class="s-label">Databases</span>
+          <span class="tmuted tsm">SQLite · PostgreSQL · MySQL</span>
+        </div>
+        <div class="setting-row" style="border:none">
+          <span class="s-label">Data Input</span>
+          <span class="tmuted tsm">CSV Upload · Live Connection</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard shortcuts -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title">⌨️ Shortcuts</div></div>
+      <div class="card-bd">
+        <div class="setting-row">
+          <span class="s-label">Send query</span>
+          <span class="fmono tsm" style="color:var(--sky)">Enter</span>
+        </div>
+        <div class="setting-row">
+          <span class="s-label">New line in query</span>
+          <span class="fmono tsm" style="color:var(--sky)">Shift + Enter</span>
+        </div>
+        <div class="setting-row">
+          <span class="s-label">Run SQL</span>
+          <span class="fmono tsm" style="color:var(--sky)">Ctrl + Enter</span>
+        </div>
+        <div class="setting-row" style="border:none">
+          <span class="s-label">Close fullscreen</span>
+          <span class="fmono tsm" style="color:var(--sky)">Escape</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="card">
+      <div class="card-hd"><div class="card-title">🔗 Quick Links</div></div>
+      <div class="card-bd">
+        <div class="fcol gap2">
+          <a href="https://console.groq.com" target="_blank" class="btn btn-surface w100" style="justify-content:flex-start;gap:8px">
+            🆓 Get Free Groq API Key
+          </a>
+          <a href="https://aistudio.google.com" target="_blank" class="btn btn-surface w100" style="justify-content:flex-start;gap:8px">
+            🔵 Get Free Gemini API Key
+          </a>
+          <button class="btn btn-surface w100" style="justify-content:flex-start;gap:8px" onclick="navigate('connect')">
+            🔗 Connect Database
+          </button>
+          <button class="btn btn-danger w100 mt1" style="justify-content:flex-start;gap:8px" onclick="clearHistory();toast('History cleared','ok')">
+            🗑 Clear Query History
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /right col -->
+
+</div>

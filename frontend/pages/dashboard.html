@@ -1,0 +1,114 @@
+<!-- ═══════════════════════════════════════
+     DASHBOARD PAGE
+     Edit this file to change the dashboard UI
+     ═══════════════════════════════════════ -->
+
+<!-- Page header -->
+<div class="pg-hero">
+  <div>
+    <div class="pg-h1">📊 Dashboard</div>
+    <div class="pg-sub">Overview of your connected database</div>
+  </div>
+  <button class="btn btn-surface btn-sm" onclick="loadDashboard()">↻ Refresh</button>
+</div>
+
+<!-- Stat cards -->
+<div class="g4">
+  <div class="stat-card" style="--accent-c:var(--g)">
+    <span class="stat-ico">📦</span>
+    <div class="stat-lbl">Tables</div>
+    <div class="stat-num" id="d-tables">—</div>
+    <div class="stat-note">In connected database</div>
+  </div>
+  <div class="stat-card" style="--accent-c:var(--sky)">
+    <span class="stat-ico">📝</span>
+    <div class="stat-lbl">Total Records</div>
+    <div class="stat-num" id="d-rows">—</div>
+    <div class="stat-note">Across all tables</div>
+  </div>
+  <div class="stat-card" style="--accent-c:var(--pur)">
+    <span class="stat-ico">🔍</span>
+    <div class="stat-lbl">Columns</div>
+    <div class="stat-num" id="d-cols">—</div>
+    <div class="stat-note">Total data fields</div>
+  </div>
+  <div class="stat-card" style="--accent-c:var(--amber)">
+    <span class="stat-ico">⚡</span>
+    <div class="stat-lbl">Queries Run</div>
+    <div class="stat-num" id="d-queries">0</div>
+    <div class="stat-note">This session</div>
+  </div>
+</div>
+
+<!-- Charts row -->
+<div class="g2">
+
+  <!-- Table breakdown -->
+  <div class="card">
+    <div class="card-hd">
+      <div>
+        <div class="card-title">📊 Table Sizes</div>
+        <div class="card-sub">Row distribution across tables</div>
+      </div>
+    </div>
+    <div class="card-bd" id="dash-table-list">
+      <div class="empty">
+        <span class="empty-ico">🔗</span>
+        <h3>No database connected</h3>
+        <button class="btn btn-green mt3" onclick="navigate('connect')">Connect Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bar chart -->
+  <div class="card">
+    <div class="card-hd">
+      <div>
+        <div class="card-title">📈 Row Distribution</div>
+        <div class="card-sub">Visual size comparison</div>
+      </div>
+    </div>
+    <div class="card-bd">
+      <div style="position:relative;height:240px">
+        <canvas id="dash-chart" style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Session stats -->
+<div class="card">
+  <div class="card-hd">
+    <div class="card-title">🧠 Session Stats</div>
+  </div>
+  <div class="card-bd">
+    <div class="g3" style="text-align:center">
+      <div style="padding:16px 10px">
+        <div style="font-family:var(--fd);font-size:40px;font-weight:800;color:var(--g)" id="d-q2">0</div>
+        <div class="tmuted tsm mt1">Queries Asked</div>
+      </div>
+      <div style="padding:16px 10px;border-left:1px solid var(--b1);border-right:1px solid var(--b1)">
+        <div style="font-family:var(--fd);font-size:40px;font-weight:800;color:var(--sky)" id="d-insights">0</div>
+        <div class="tmuted tsm mt1">AI Insights</div>
+      </div>
+      <div style="padding:16px 10px">
+        <div style="font-family:var(--fd);font-size:40px;font-weight:800;color:var(--pur)" id="d-hist">0</div>
+        <div class="tmuted tsm mt1">Saved History</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick actions -->
+<div class="card">
+  <div class="card-hd"><div class="card-title">⚡ Quick Actions</div></div>
+  <div class="card-bd">
+    <div class="flex gap3 flex-wrap">
+      <button class="btn btn-green"   onclick="navigate('query')">💬 Ask a Question</button>
+      <button class="btn btn-outline" onclick="navigate('sql')">⚡ Open SQL Editor</button>
+      <button class="btn btn-outline" onclick="navigate('upload')">📂 Upload CSV</button>
+      <button class="btn btn-outline" onclick="navigate('connect')">🔗 Switch Database</button>
+    </div>
+  </div>
+</div>

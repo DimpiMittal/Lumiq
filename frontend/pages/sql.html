@@ -1,0 +1,94 @@
+<!-- ═══════════════════════════════════════
+     SQL EDITOR PAGE
+     Edit this file to change the SQL editor UI
+     ═══════════════════════════════════════ -->
+
+<!-- Page header -->
+<div class="pg-hero">
+  <div>
+    <div class="pg-h1">⚡ SQL Editor</div>
+    <div class="pg-sub">Write custom SELECT queries — read-only, safe execution</div>
+  </div>
+  <div class="flex gap2">
+    <button class="btn btn-surface btn-sm" onclick="clearSQL()">🗑 Clear</button>
+    <button class="btn btn-green"          onclick="runSQL()">▶ Run Query</button>
+  </div>
+</div>
+
+<!-- Editor card -->
+<div class="card">
+  <div class="card-hd">
+    <div>
+      <div class="card-title">Query Editor</div>
+      <div class="card-sub">Only SELECT statements are allowed for safety</div>
+    </div>
+    <span class="tag tag-t">🔒 Read-Only</span>
+  </div>
+  <div class="card-bd">
+    <textarea
+      id="sql-ta"
+      class="sql-ta w100"
+      placeholder="SELECT * FROM orders LIMIT 20;"
+      spellcheck="false"
+    ></textarea>
+
+    <!-- Quick template buttons -->
+    <div class="tpl-row">
+      <span class="tpl-btn" onclick="insertSQL('SELECT * FROM orders LIMIT 20;')">📦 Orders</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT * FROM customers LIMIT 20;')">👥 Customers</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT * FROM products LIMIT 20;')">🛍 Products</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT city, COUNT(*) AS total FROM customers GROUP BY city ORDER BY total DESC;')">🏙 By City</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT status, COUNT(*) AS count, ROUND(SUM(total_amount),2) AS revenue FROM orders GROUP BY status;')">📊 Order Status</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT category, ROUND(AVG(price),2) AS avg_price, COUNT(*) AS products FROM products GROUP BY category;')">💰 By Category</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT c.name, COUNT(o.id) AS orders, ROUND(SUM(o.total_amount),2) AS revenue FROM customers c JOIN orders o ON c.id=o.customer_id GROUP BY c.id ORDER BY revenue DESC LIMIT 10;')">🏆 Top Customers</span>
+      <span class="tpl-btn" onclick="insertSQL('SELECT channel, SUM(leads) AS leads, SUM(conversions) AS conversions, ROUND(SUM(conversions)*100.0/SUM(leads),1) AS conv_rate FROM marketing_campaigns GROUP BY channel ORDER BY conv_rate DESC;')">📣 Campaign ROI</span>
+    </div>
+  </div>
+  <div class="card-ft">
+    <div class="flex gap2 ic">
+      <button class="btn btn-green" onclick="runSQL()">▶ Run Query</button>
+      <button class="btn btn-surface btn-sm" onclick="clearSQL()">Clear</button>
+      <div class="tmuted txs" style="margin-left:auto">Press Ctrl+Enter or click Run</div>
+    </div>
+  </div>
+</div>
+
+<!-- Results card (hidden until query runs) -->
+<div class="card hidden" id="sql-out">
+  <div class="card-hd">
+    <div>
+      <div class="card-title">Query Results</div>
+      <div class="card-sub">Showing up to 200 rows</div>
+    </div>
+    <div id="sql-badge"></div>
+  </div>
+  <div class="card-bd" id="sql-body"></div>
+</div>
+
+<!-- Tips card -->
+<div class="card">
+  <div class="card-hd"><div class="card-title">💡 SQL Tips</div></div>
+  <div class="card-bd">
+    <div class="g3">
+      <div>
+        <div class="fw7 tsm taccent mb1">Aggregate Data</div>
+        <div class="tmuted" style="font-size:13px;line-height:1.8">Use <span class="fmono" style="color:var(--sky)">GROUP BY</span> with <span class="fmono" style="color:var(--sky)">COUNT, SUM, AVG</span> for summaries</div>
+      </div>
+      <div>
+        <div class="fw7 tsm taccent mb1">Join Tables</div>
+        <div class="tmuted" style="font-size:13px;line-height:1.8">Use <span class="fmono" style="color:var(--sky)">JOIN … ON</span> to combine data from multiple tables</div>
+      </div>
+      <div>
+        <div class="fw7 tsm taccent mb1">Filter Results</div>
+        <div class="tmuted" style="font-size:13px;line-height:1.8">Use <span class="fmono" style="color:var(--sky)">WHERE</span> to filter rows and <span class="fmono" style="color:var(--sky)">ORDER BY … LIMIT</span> to sort</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Ctrl+Enter shortcut for SQL editor
+document.getElementById("sql-ta")?.addEventListener("keydown", e => {
+  if ((e.ctrlKey||e.metaKey) && e.key==="Enter") { e.preventDefault(); runSQL(); }
+});
+</script>

@@ -1,0 +1,24 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-tmp/
+
+# Local databases
+*.db
+*.sqlite3
+
+# User uploads
+uploads/*
+!uploads/.gitkeep
+
+# IDE and logs
+.vscode/
+*.log

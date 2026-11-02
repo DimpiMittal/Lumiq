@@ -1,0 +1,35 @@
+<!-- ═══════════════════════════════════════
+     QUERY HISTORY PAGE
+     Edit this file to change the history UI
+     ═══════════════════════════════════════ -->
+
+<!-- Page header -->
+<div class="pg-hero">
+  <div>
+    <div class="pg-h1">🕒 Query History</div>
+    <div class="pg-sub">Click any query to replay it instantly</div>
+  </div>
+  <button class="btn btn-danger btn-sm" onclick="clearHistory()">🗑 Clear All</button>
+</div>
+
+<!-- History list -->
+<div class="card">
+  <div class="card-bd" id="hist-list">
+    <div class="empty">
+      <span class="empty-ico">📝</span>
+      <h3>No history yet</h3>
+      <p>Questions you ask will be saved here automatically.</p>
+      <button class="btn btn-green mt3" onclick="navigate('query')">Ask a Question →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Info card -->
+<div class="card" style="background:var(--s2);border-color:var(--b1)">
+  <div class="card-bd flex ic gap3">
+    <span style="font-size:20px;flex-shrink:0">💡</span>
+    <div class="tmuted" style="font-size:13px;line-height:1.65">
+      History is stored locally in your browser. It persists between sessions. Click any query to replay it and get fresh results from your current database.
+    </div>
+  </div>
+</div>

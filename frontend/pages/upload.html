@@ -1,0 +1,69 @@
+<!-- ═══════════════════════════════════════
+     UPLOAD CSV PAGE
+     Edit this file to change the upload UI
+     ═══════════════════════════════════════ -->
+
+<!-- Page header -->
+<div class="pg-hero">
+  <div>
+    <div class="pg-h1">📂 Upload CSV</div>
+    <div class="pg-sub">Drop any CSV file — creates a queryable table instantly</div>
+  </div>
+</div>
+
+<!-- Drop zone -->
+<div class="card" style="max-width:620px;margin:0 auto">
+  <div class="card-bd">
+    <div class="drop-zone" id="drop-zone">
+      <input type="file" accept=".csv" onchange="onFileChange(this)"/>
+      <span class="dz-ico">📂</span>
+      <div class="dz-h">Drop your CSV file here</div>
+      <div class="dz-sub">or click to browse · CSV files up to 10 MB</div>
+    </div>
+    <div id="upload-status" class="mt3"></div>
+  </div>
+</div>
+
+<!-- Tips -->
+<div class="g2" style="max-width:620px;margin:0 auto">
+
+  <div class="card">
+    <div class="card-hd"><div class="card-title">✅ Format Requirements</div></div>
+    <div class="card-bd">
+      <ul style="padding-left:18px;color:var(--t2);font-size:13.5px;line-height:2.2">
+        <li>First row must be column headers</li>
+        <li>UTF-8 encoding preferred</li>
+        <li>Numbers without ₹ $ % symbols</li>
+        <li>Dates in YYYY-MM-DD format</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><div class="card-title">⚡ What Happens Next</div></div>
+    <div class="card-bd">
+      <ul style="padding-left:18px;color:var(--t2);font-size:13.5px;line-height:2.2">
+        <li>CSV is parsed and typed automatically</li>
+        <li>A queryable SQLite table is created</li>
+        <li>App switches to Ask AI page</li>
+        <li>You can ask questions immediately</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- Example prompt ideas after upload -->
+<div class="card" style="max-width:620px;margin:0 auto">
+  <div class="card-hd"><div class="card-title">💡 Example Questions to Ask After Upload</div></div>
+  <div class="card-bd">
+    <div class="sugg-wrap">
+      <span class="sugg-pill">Show the top 10 rows</span>
+      <span class="sugg-pill">What are the column averages?</span>
+      <span class="sugg-pill">Find any duplicate values</span>
+      <span class="sugg-pill">Group by category and count</span>
+      <span class="sugg-pill">What's the date range of this data?</span>
+      <span class="sugg-pill">Show me the highest value rows</span>
+    </div>
+  </div>
+</div>

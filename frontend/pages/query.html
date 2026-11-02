@@ -1,0 +1,67 @@
+<!-- ═══════════════════════════════════════
+     ASK AI ANALYST PAGE
+     Edit this file to change the chat/query UI
+     ═══════════════════════════════════════ -->
+
+<div class="chat-layout">
+
+  <!-- ── Left column ── -->
+  <div class="chat-left">
+
+    <!-- Suggestions card -->
+    <div class="card">
+      <div class="card-bd" style="padding:13px 18px">
+        <div class="txs tmuted fw7 mb2" style="letter-spacing:1.2px;text-transform:uppercase">Smart Suggestions</div>
+        <div class="sugg-wrap" id="sugg-list">
+          <span class="sugg-pill" onclick="fillQuery(this)">Top customers by revenue?</span>
+          <span class="sugg-pill" onclick="fillQuery(this)">Monthly sales trend</span>
+          <span class="sugg-pill" onclick="fillQuery(this)">Best selling products?</span>
+          <span class="sugg-pill" onclick="fillQuery(this)">Customers by city</span>
+          <span class="sugg-pill" onclick="fillQuery(this)">Campaign ROI by channel</span>
+          <span class="sugg-pill" onclick="fillQuery(this)">Order status breakdown</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat feed -->
+    <div class="chat-feed" id="chat-feed">
+      <div class="empty" id="chat-empty">
+        <span class="empty-ico">🤖</span>
+        <h3>Ready to analyze your data</h3>
+      </div>
+    </div>
+
+    <!-- Query input -->
+    <div class="qbox">
+      <textarea
+        id="q-inp"
+        rows="2"
+        placeholder="e.g. Which city generates the most revenue? Why did sales drop last month?"
+        onkeydown="handleKey(event)"
+      ></textarea>
+      <div class="qbox-foot">
+        <div class="chip-row">
+          <span class="chip" onclick="addChip('top 10')">Top 10</span>
+          <span class="chip" onclick="addChip('by month')">By Month</span>
+          <span class="chip" onclick="addChip('compare by')">Compare</span>
+          <span class="chip" onclick="addChip('total and average')">Summary</span>
+        </div>
+        <button class="btn btn-green" id="ask-btn" onclick="askQuery()">Ask AI ✨</button>
+      </div>
+    </div>
+
+  </div><!-- /chat-left -->
+
+  <!-- ── Schema panel (right) ── -->
+  <div class="schema-pnl">
+    <div class="fw7 tsm mb2 fdisp" style="color:var(--t2)">📋 Schema</div>
+    <input class="schema-filter" id="schema-filter" placeholder="Filter tables…" oninput="filterSchema(this.value)"/>
+    <div id="schema-list">
+      <div class="empty" style="padding:22px 8px">
+        <span class="empty-ico" style="font-size:26px">🔗</span>
+        <p style="font-size:12px">Connect a database to see your schema</p>
+      </div>
+    </div>
+  </div>
+
+</div>
